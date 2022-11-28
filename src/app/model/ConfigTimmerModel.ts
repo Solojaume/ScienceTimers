@@ -1,34 +1,48 @@
-class ConfigTimmerModel implements IConfigTimmer {
+import { IConfigTimmer } from "./Interfaces/IConfigTimmer";
+
+export class ConfigTimmerModel implements IConfigTimmer {
     targetTime: any;
     interval: any;
-
+    hour: number = 0;
+    minutos: number = 0;
+    segundos: number = 0;
     //Constructor
-    constructor(targetTime: any) {
+    constructor(targetTime: any = 5) {
         this.targetTime = targetTime;
     }
 
+
     arrancarTimer() {
+        this.interval = setInterval(() => {
+            this.tickTock();
 
+            if (this.targetTime === 0) {
+                this.stopCountDown();
+            }
+            this.targetTime = this.targetTime - 1;
+        }, 1000);
     }
 
-    stopCountDown(){
+    stopCountDown() {
         clearInterval(this.interval);
-        this.finalizado.emit();
+        console.log("Temporizador finalizado");
+        const audio = new Audio('assets/temporizador.m4a');
+        audio.play();
     }
-    
+
     tickTock() {
         let targetTime = this.targetTime;
-        let hours: any = targetTime / 3600;
-        hours = Math.trunc(hours);
+        this.hour = targetTime / 3600;
+        this.hour = Math.trunc(this.hour);
         targetTime = targetTime % 3600;
         //console.log("HOURS:",hours);
 
-        let minutes: any = targetTime / 60;
-        minutes = Math.trunc(minutes);
+        this.minutos = targetTime / 60;
+        this.minutos = Math.trunc(this.minutos);
         targetTime = targetTime % 60;
         //console.log("Minutes:",minutes);
 
-        let seconds = targetTime;
+        this.segundos = targetTime;
         //console.log("SEGUNDOS con decimales:",seconds);
 
     }

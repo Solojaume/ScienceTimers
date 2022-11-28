@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TimerDownComponent } from './timer-down/timer-down.component';
+import { CreateNewTimmerComponent } from './create-new-timmer/create-new-timmer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimerDownComponent
+    TimerDownComponent,
+    CreateNewTimmerComponent
   ],
   imports: [
     BrowserModule,

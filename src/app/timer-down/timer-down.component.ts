@@ -1,37 +1,26 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import { ConfigTimmerModel } from '../model/ConfigTimmerModel';
 
 @Component({
   selector: 'app-timer-down',
   templateUrl: './timer-down.component.html',
   styleUrls: ['./timer-down.component.scss']
 })
-export class TimerDownComponent implements OnInit {
-
+export class TimerDownComponent implements OnInit,OnChanges {
+  @Input() configTimer:ConfigTimmerModel = new ConfigTimmerModel();
+  @Output() finalizado = new EventEmitter<boolean>;
   constructor() { }
+  ngOnChanges(changes: SimpleChanges): void {
+    
+  }
 
   ngOnInit(): void {
     //console.log(this.targetDate.getTime());
   }
 
-  date: any;
-  now: any;
+
   //targetDate: any = new Date(2022, 10, 24, 17, 21);
-  targetTime: any = 10;
-  interval!:any;
-  months: Array<string> = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
+  
   /*
   currentTime: any = `${
     this.months[this.targetDate.getMonth()]
@@ -44,40 +33,10 @@ export class TimerDownComponent implements OnInit {
   @ViewChild('seconds', { static: true }) seconds!: ElementRef;
 
   ngAfterViewInit() {
-    this.interval = setInterval(() => {
-      this.tickTock();
-      
-      if(this.targetTime===0){
-        this.stopCountDown();
-      }
-      this.targetTime = this.targetTime - 1;
-    }, 1000);
+   
   }
 
-  stopCountDown(){
-    clearInterval(this.interval);
-  }
 
-  tickTock() {
-    let targetTime = this.targetTime;
-    let hours: any = targetTime / 3600;
-    console.log("HOURS con decimales:",hours);
-    hours = Math.trunc(hours);
-    targetTime = targetTime % 3600;
-    console.log("HOURS:",hours);
-    
-    let minutes:any = targetTime / 60;
-    minutes = Math.trunc(minutes);
-    console.log("Minutes con decimales:",minutes);
-    targetTime = targetTime % 60;
-    console.log("Minutes:",minutes);
 
-    let seconds = targetTime;
-    console.log("SEGUNDOS con decimales:",seconds);
 
-    //this.days.nativeElement.innerText = dias;
-    this.hours.nativeElement.innerText = hours;
-    this.minutes.nativeElement.innerText = minutes;
-    this.seconds.nativeElement.innerText = seconds;
-  }
 }
