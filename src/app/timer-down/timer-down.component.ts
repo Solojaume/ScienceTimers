@@ -6,17 +6,11 @@ import { ConfigTimmerModel } from '../model/ConfigTimmerModel';
   templateUrl: './timer-down.component.html',
   styleUrls: ['./timer-down.component.scss']
 })
-export class TimerDownComponent implements OnInit,OnChanges {
-  @Input() configTimer:ConfigTimmerModel = new ConfigTimmerModel();
+export class TimerDownComponent {
+  @Input() public configTimer:ConfigTimmerModel = new ConfigTimmerModel();
   @Output() finalizado = new EventEmitter<boolean>;
   constructor() { }
-  ngOnChanges(changes: SimpleChanges): void {
-    
-  }
-
-  ngOnInit(): void {
-    //console.log(this.targetDate.getTime());
-  }
+  public classSelected = "d-none";
 
 
   //targetDate: any = new Date(2022, 10, 24, 17, 21);
@@ -32,11 +26,31 @@ export class TimerDownComponent implements OnInit,OnChanges {
   @ViewChild('minutes', { static: true }) minutes!: ElementRef;
   @ViewChild('seconds', { static: true }) seconds!: ElementRef;
 
-  ngAfterViewInit() {
-   
-  }
+ desplegar(){
+  this.classSelected = "selected";
+ }
+ 
+ play(){
+  let tiempo = 5;
+  alert("ALERTA SISMICA SE HA ESTABLECIDO UN TEMPORIZADOR DE 5segundos")
+  this.configTimer.playTimmer(tiempo);
+ }
 
+ reset(){
+  this.configTimer.resetTimmer();
+ }
 
+ pause(){
+  this.configTimer.pausarTimmer();
+ }
+
+ finalizar(){
+  this.configTimer.finalizarTimmer();
+ }
+
+ resume(){
+  this.configTimer.arrancarTimer();
+ }
 
 
 }

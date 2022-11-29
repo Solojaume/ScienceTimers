@@ -8,7 +8,7 @@ import { ConfigTimmerModel } from './model/ConfigTimmerModel';
 })
 export class AppComponent {
   title = 'ScienceTimers';
-  configTimmer!: ConfigTimmerModel;
+  configTimmer: ConfigTimmerModel = new ConfigTimmerModel(0);
   
   empezar(){
     this.configTimmer = new ConfigTimmerModel(6);

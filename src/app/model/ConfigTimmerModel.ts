@@ -6,11 +6,19 @@ export class ConfigTimmerModel implements IConfigTimmer {
     hour: number = 0;
     minutos: number = 0;
     segundos: number = 0;
+    audio:any;
     //Constructor
     constructor(targetTime: any = 5) {
-        this.targetTime = targetTime;
+        this.targetTime = targetTime - 1;
     }
+    status: string = 'stop';
 
+    playTimmer(time: any) {
+        this.status= 'play';
+        this.targetTime = time;
+        this.segundos = this.targetTime;
+        this.arrancarTimer();
+    }
 
     arrancarTimer() {
         this.interval = setInterval(() => {
@@ -24,10 +32,35 @@ export class ConfigTimmerModel implements IConfigTimmer {
     }
 
     stopCountDown() {
-        clearInterval(this.interval);
+        //clearInterval(this.interval);
         console.log("Temporizador finalizado");
-        const audio = new Audio('assets/temporizador.m4a');
-        audio.play();
+        this.audio = new Audio('assets/alarm-clock.mp3');
+        this.audio.play();
+        this.status= 'finish';
+    }
+
+    pausarTimmer(){
+        clearInterval(this.interval);
+        this.status = 'pause';
+    }
+
+    resetTimmer(){
+        clearInterval(this.interval);
+        this.targetTime = 0;
+        this.hour=0;
+        this.minutos = 0;
+        this.segundos=0;
+        this.status='stop';
+    }
+
+    pauseTimmer(){
+        clearInterval(this.interval);
+        this.status='pause';
+    }
+
+    finalizarTimmer(){
+        this.audio.pause();
+        this.resetTimmer();
     }
 
     tickTock() {

@@ -1,15 +1,36 @@
-<div class="count-down-timer text-center">
-    <p>Countdown to </p>
-    <div class="wrapper">
-      <div class="description text-center">
-        <p>Hours</p>
-        <p>Minutes</p>
-        <p>Seconds</p>
-      </div>
-      <div class="times text-center">
-        <p #hours></p>
-        <p #minutes></p>
-        <p #seconds></p>
-      </div>
+<div class="count-down-timer " (click)="desplegar()">
+  <p>Countdown to </p>
+  <div class="wrapper">
+    <div class="description text-center">
+      <p class="margin-l">Hours</p>
+      <p>Minutes</p>
+      <p>Seconds</p>
+    </div>
+    <div class="times text-center">
+      <p #hours> {{configTimer.hour}}</p>
+      <p #minutes>{{configTimer.minutos}}</p>
+      <p #seconds class="ml-1">{{configTimer.segundos}}</p>
     </div>
   </div>
+  <div [ngClass]="classSelected">
+    <span (click)="reset()"  *ngIf="configTimer.status==='play' || configTimer.status==='pause'">
+      <i class="bi bi-arrow-counterclockwise"></i> 
+    </span>
+    <span (click)="pause()" *ngIf="configTimer.status==='play'"> 
+      <i class="bi bi-pause-fill ml"></i>
+    </span>
+    <span (click)="play()" *ngIf="configTimer.status==='stop'"> 
+      <i class="bi bi-play-fill ml"></i>
+    </span>
+    <span (click)="resume()" *ngIf="configTimer.status==='pause'"> 
+      <i class="bi bi-play-fill ml"></i>
+    </span>
+    <span (click)="finalizar()" *ngIf="configTimer.status==='finish'">
+      <i class="bi bi-stop-fill ml"></i>
+    </span>
+    <span (click)="play()">
+      <i class="bi bi-trash3-fill ml"></i>
+    </span>
+
+  </div>
+</div>
