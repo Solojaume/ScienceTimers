@@ -21,6 +21,7 @@ export class ConfigTimmerModel implements IConfigTimmer {
     }
 
     arrancarTimer() {
+        this.status = 'play';
         this.interval = setInterval(() => {
             this.tickTock();
 
@@ -51,11 +52,6 @@ export class ConfigTimmerModel implements IConfigTimmer {
         this.minutos = 0;
         this.segundos=0;
         this.status='stop';
-    }
-
-    pauseTimmer(){
-        clearInterval(this.interval);
-        this.status='pause';
     }
 
     finalizarTimmer(){
