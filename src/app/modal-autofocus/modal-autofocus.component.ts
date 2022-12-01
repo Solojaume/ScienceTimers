@@ -8,9 +8,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./modal-autofocus.component.scss'],
 })
 export class ModalAutofocusComponent implements OnInit {
-  @Input() tittle: string = 'Cambiar nombre TIMMER';
+  @Input() tittle: string = 'Cambiar nombre temporizador';
   @Input() strong1: string = '¿Estas seguro de quieres cambiar el nombre de este';
-  @Input() spanStrong: string = ' "imagen" ';
+  @Input() spanStrong: string = ' "Temporizador" ';
   @Input() strong2: string = '?';
   public formControl:FormControl = new FormControl();
   /*
