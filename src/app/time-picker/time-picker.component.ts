@@ -1,6 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Type } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbTime } from '@ng-bootstrap/ng-bootstrap/timepicker/ngb-time';
+import { ModalAutofocusComponent } from '../modal-autofocus/modal-autofocus.component';
 import { ITime } from '../model/Interfaces/ITime';
 
 @Component({
@@ -16,7 +18,7 @@ export class TimePickerComponent implements OnInit {
   inputSeg = new FormControl(0);
   model: ITime = { hour: 0, minutos: 0, segundos: 0 };
 
-  maxData: ITime ={ hour:100, minutos: 60, segundos: 59 };
+  maxData: ITime ={ hour:100, minutos: 59, segundos: 59 };
   minData: ITime ={ hour: 0, minutos: 0, segundos: 0 };
   hourStep: number = 1;
   minutosStep: number = 1;
@@ -69,7 +71,9 @@ export class TimePickerComponent implements OnInit {
     this.model.minutos = this.model.minutos + step;
     if (this.model.minutos < this.minData.minutos) {//0
       this.model.minutos = this.maxData.minutos;
-      this.changeHour(-1);
+      if(this.model.hour>0){
+        this.changeHour(-1);
+      }
     } else if (this.model.minutos > this.maxData.minutos) {//60
       this.model.minutos = this.minData.minutos;//0
       this.changeHour(1);
@@ -104,4 +108,8 @@ export class TimePickerComponent implements OnInit {
 
   }
 
+  
 }
+const MODALS: { [name: string]: Type<any> } = {
+  autofocus: ModalAutofocusComponent,
+};

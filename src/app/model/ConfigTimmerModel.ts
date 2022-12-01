@@ -7,6 +7,7 @@ export class ConfigTimmerModel implements IConfigTimmer {
     minutos: number = 0;
     segundos: number = 0;
     audio:any;
+    nombre:string="Nombre temporizador (Haz click para cambiarlo)";
     //Constructor
     constructor(targetTime: any = 5) {
         this.targetTime = targetTime - 1;
@@ -15,8 +16,7 @@ export class ConfigTimmerModel implements IConfigTimmer {
 
     playTimmer(time: any) {
         this.status= 'play';
-        this.targetTime = time;
-        this.segundos = this.targetTime;
+        this.targetTime = time-1;
         this.arrancarTimer();
     }
 

@@ -1,13 +1,13 @@
 <div class="count-down-timer " (click)="desplegar()">
-  <p>Countdown to </p>
+  <p (click)="open('autofocus')">{{configTimer.nombre}} </p>
   <div class="wrapper">
-    <div class="description1 text-center" *ngIf="configTimer.status==='stop'" >
+    <div class="description1 text-center" *ngIf="configTimer.status==='stop'">
       <p>Hours</p>
       <p>Minutes</p>
       <p>Seconds</p>
     </div>
 
-    <div class="description text-center" *ngIf="configTimer.status!=='stop'" >
+    <div class="description text-center" *ngIf="configTimer.status!=='stop'">
       <p class="margin-l">Hours</p>
       <p>Minutes</p>
       <p>Seconds</p>
@@ -36,7 +36,7 @@
     <span (click)="finalizar()" *ngIf="configTimer.status==='finish'">
       <i class="bi bi-stop-fill ml"></i>
     </span>
-    <span (click)="play()">
+    <span (click)="eliminar()">
       <i class="bi bi-trash3-fill ml"></i>
     </span>
 

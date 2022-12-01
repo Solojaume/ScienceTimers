@@ -5,16 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TimerDownComponent } from './timer-down/timer-down.component';
-import { CreateNewTimmerComponent } from './create-new-timmer/create-new-timmer.component';
 import { TimePickerComponent } from './time-picker/time-picker.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ModalAutofocusComponent } from './modal-autofocus/modal-autofocus.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerDownComponent,
-    CreateNewTimmerComponent,
     TimePickerComponent,
+    ModalAutofocusComponent,
   ],
   imports: [
     BrowserModule,
