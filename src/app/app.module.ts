@@ -6,17 +6,24 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TimerDownComponent } from './timer-down/timer-down.component';
 import { CreateNewTimmerComponent } from './create-new-timmer/create-new-timmer.component';
+import { TimePickerComponent } from './time-picker/time-picker.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     TimerDownComponent,
-    CreateNewTimmerComponent
+    CreateNewTimmerComponent,
+    TimePickerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
+  ],
+  exports:[
+    TimePickerComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
