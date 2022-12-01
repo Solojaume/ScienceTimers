@@ -110,6 +110,4 @@ export class TimePickerComponent implements OnInit {
 
   
 }
-const MODALS: { [name: string]: Type<any> } = {
-  autofocus: ModalAutofocusComponent,
-};
+
