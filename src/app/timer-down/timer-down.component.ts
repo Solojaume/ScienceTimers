@@ -16,7 +16,7 @@ export class TimerDownComponent {
   @Output() finalizado = new EventEmitter<boolean>;
   constructor(
     private _modalService: NgbModal,
-    public timmerService:TimerService
+    public timmerService: TimerService
   ) { }
 
   //targetDate: any = new Date(2022, 10, 24, 17, 21);
@@ -38,13 +38,13 @@ export class TimerDownComponent {
   @ViewChild('seconds', { static: true }) seconds!: ElementRef;
 
   desplegar() {
-    this.configTimer.classSelected = "selected";
     this.timmerService.deseleccionarTimmer();
     this.timmerService.selectedTimerPosition = this.configTimer.position;
+    this.configTimer.classSelected = "selected";
   }
 
   play() {
-   // alert("ALERTA SISMICA SE HA ESTABLECIDO UN TEMPORIZADOR DE 5segundos")
+    // alert("ALERTA SISMICA SE HA ESTABLECIDO UN TEMPORIZADOR DE 5segundos")
     this.configTimer.playTimmer(this.tiempo);
   }
 
@@ -70,13 +70,13 @@ export class TimerDownComponent {
     this.configTimer.segundos = datos.segundos;
     this.tiempo = datos.tiempoAContar;
   }
-  
+
   open(name: string) {
     let modal = this._modalService.open(MODALS[name]);
     console.log('let Modal', modal);
     modal.closed.subscribe((closed) => {
       console.log('CLOSED modal:', closed);
-      if( closed != null){
+      if (closed != null) {
         this.configTimer.nombre = closed
       }
       //this.deleteI();
@@ -87,8 +87,8 @@ export class TimerDownComponent {
     });
   }
 
-  eliminar(){
-    alert("Funcion disponible proximamente");
+  eliminar() {
+    this.timmerService.deleteTimmer()
   }
 
 }

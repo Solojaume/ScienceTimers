@@ -96,6 +96,7 @@ export class TimePickerComponent implements OnInit {
     this.calcularSegundos();
     console.log("Segundos:",this.model.segundos);
   }
+  
   calcularSegundos() {
     let segundosEnHora = 3600;
     let segundosEnMinutos = 60;
