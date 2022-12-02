@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ConfigTimmerModel } from './model/ConfigTimmerModel';
+import { TimerService } from './services/timer.service';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,10 @@ import { ConfigTimmerModel } from './model/ConfigTimmerModel';
 })
 export class AppComponent {
   title = 'ScienceTimers';
-  configTimmer: ConfigTimmerModel = new ConfigTimmerModel(0);
-  
-  empezar(){
-    this.configTimmer = new ConfigTimmerModel(6);
-    this.configTimmer.arrancarTimer();
+
+   
+  constructor(public timmerService:TimerService){
+
   }
+ 
 }

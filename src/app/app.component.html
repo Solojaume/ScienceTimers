@@ -1,4 +1,9 @@
 
-<app-timer-down [configTimer]="configTimmer" ></app-timer-down>
+<app-timer-down *ngFor="let configTimmer of timmerService.getTimmers() " [configTimer]="configTimmer" ></app-timer-down>
 
-<footer class="text-center">Version 0.4.1</footer>
+<div class="position-absolute bottom-0 start-50 translate-middle-x">
+    <div class="count-down-timer" (click)="timmerService.createTimmer()">
+        Añadir otro Timmer
+    </div>
+    <footer class="text-center">Version 0.4.1</footer>
+</div>
