@@ -6,16 +6,25 @@ import { ConfigTimmerModel } from '../model/ConfigTimmerModel';
 })
 export class TimerService {
   selectedTimerPosition: number = -1;
-  private listaTemporizadores: ConfigTimmerModel[] = [new ConfigTimmerModel(0)];
-  constructor() { }
+  private listaTemporizadores: ConfigTimmerModel[] = [];
+  constructor() { 
+    this.createTimmer();
+  }
 
   createTimmer() {
-    let nt = new ConfigTimmerModel();
+    let count = this.listaTemporizadores.length;
+    alert(count);
+    let nt = new ConfigTimmerModel(0,count);
     this.listaTemporizadores.push(nt);
   }
 
   deleteTimmer() {
 
+  }
+
+  deseleccionarTimmer() {
+    this.listaTemporizadores[this.selectedTimerPosition].classSelected = 'd-none';
+    this.selectedTimerPosition = -1;
   }
 
   contarTemporizadores() {

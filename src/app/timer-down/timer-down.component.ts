@@ -4,6 +4,7 @@ import { NgbModal, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ModalAutofocusComponent } from '../modal-autofocus/modal-autofocus.component';
 import { ConfigTimmerModel } from '../model/ConfigTimmerModel';
 import { ITime } from '../model/Interfaces/ITime';
+import { TimerService } from '../services/timer.service';
 
 @Component({
   selector: 'app-timer-down',
@@ -13,9 +14,10 @@ import { ITime } from '../model/Interfaces/ITime';
 export class TimerDownComponent {
   @Input() public configTimer: ConfigTimmerModel = new ConfigTimmerModel();
   @Output() finalizado = new EventEmitter<boolean>;
-  constructor(private _modalService: NgbModal) { }
-  public classSelected = "d-none";
-
+  constructor(
+    private _modalService: NgbModal,
+    public timmerService:TimerService
+  ) { }
 
   //targetDate: any = new Date(2022, 10, 24, 17, 21);
 
@@ -36,7 +38,9 @@ export class TimerDownComponent {
   @ViewChild('seconds', { static: true }) seconds!: ElementRef;
 
   desplegar() {
-    this.classSelected = "selected";
+    this.configTimer.classSelected = "selected";
+    this.timmerService.deseleccionarTimmer();
+    this.timmerService.selectedTimerPosition = this.configTimer.position;
   }
 
   play() {
@@ -77,10 +81,10 @@ export class TimerDownComponent {
       }
       //this.deleteI();
     });
+
     modal.dismissed.subscribe((dismis) => {
       console.log('Dismis modal:', dismis);
     });
-
   }
 
   eliminar(){

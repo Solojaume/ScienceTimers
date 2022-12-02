@@ -7,10 +7,13 @@ export class ConfigTimmerModel implements IConfigTimmer {
     minutos: number = 0;
     segundos: number = 0;
     audio:any;
+    classSelected:string = "d-none";
+    position!:number;
     nombre:string="Nombre temporizador (Haz click para cambiarlo)";
     //Constructor
-    constructor(targetTime: any = 5) {
+    constructor(targetTime: any = 5,position: number=0) {
         this.targetTime = targetTime - 1;
+        this.position = position;
     }
     status: string = 'stop';
 

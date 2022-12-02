@@ -1,5 +1,8 @@
+<cdk-virtual-scroll-viewport itemSize="100" class="scroll">
+    <app-timer-down *ngFor="let configTimmer of timmerService.getTimmers() " [configTimer]="configTimmer">
+    </app-timer-down>
+</cdk-virtual-scroll-viewport>
 
-<app-timer-down *ngFor="let configTimmer of timmerService.getTimmers() " [configTimer]="configTimmer" ></app-timer-down>
 
 <div class="position-absolute bottom-0 start-50 translate-middle-x">
     <div class="count-down-timer" (click)="timmerService.createTimmer()">

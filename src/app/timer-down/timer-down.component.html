@@ -20,7 +20,7 @@
       <p #seconds class="ml-1">{{configTimer.segundos}}</p>
     </div>
   </div>
-  <div [ngClass]="classSelected">
+  <div [ngClass]="configTimer.classSelected">
     <span (click)="reset()" *ngIf="configTimer.status==='play' || configTimer.status==='pause'">
       <i class="bi bi-arrow-counterclockwise"></i>
     </span>
@@ -36,7 +36,7 @@
     <span (click)="finalizar()" *ngIf="configTimer.status==='finish'">
       <i class="bi bi-stop-fill ml"></i>
     </span>
-    <span (click)="eliminar()">
+    <span (click)="eliminar()" *ngIf="timmerService.contarTemporizadores() != 1 && timmerService.contarTemporizadores() != 0">
       <i class="bi bi-trash3-fill ml"></i>
     </span>
 
