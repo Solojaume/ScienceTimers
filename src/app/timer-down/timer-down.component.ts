@@ -18,10 +18,10 @@ export class TimerDownComponent {
   constructor(
     private _modalService: NgbModal,
     public timmerService: TimerService,
-    private storageService:StorageService
+    private storageService: StorageService
   ) { }
 
-  tiempo: any=0;
+  tiempo: any = 0;
   segundosConfigurables = true;
   ctrl = new FormControl();
   hourStep = 1;
@@ -33,23 +33,46 @@ export class TimerDownComponent {
   @ViewChild('seconds', { static: true }) seconds!: ElementRef;
 
   desplegar() {
-    this.timmerService.deseleccionarTimmer(); 
-    console.log("selected:",this.configTimer.position);
+    this.timmerService.deseleccionarTimmer();
+    console.log("selected:", this.configTimer.position);
     this.timmerService.selectedTimerPosition = this.configTimer.position;
     this.configTimer.classSelected = "selected";
   }
 
+  /*________________________ Variable CONFIGURACIONES ___________________________*/
   //Aquí se dice como ha de tratar el comienzo de un temporizador cuando se intenta empezar con 0
-  configObcionesInicioTemporizadorSiEs0 = "empezar";/*
+  configObcionesInicioTemporizadorSiEs0 = "empezar";
+  /*
   Puede ser:
-   error               ---- Lo que lanzará un error
-   empezar             ---- Lo que pondra un temporizador desde 0;
-   poner1YEmpezar       ---- Pone que el tiempo objetivo es un segundo y arranca el temporizador
-   */
+   error                   ---- Sirve para avisar al usuario de que esta función no está permitida
+   default/empezar         ---- Empezará el temporizador desde 0;
+   poner1SegYEmpezar       ---- Pone que el tiempo objetivo es un segundo y arranca el temporizador
+   ponerTiempoPerYEmpezar  ---- Funciona igual que el anterior pero con la diferencia que el tiempo lo ha introducido previamente el usuario
+  */
   play() {
     //alert("ALERTA SISMICA SE HA ESTABLECIDO UN TEMPORIZADOR DE" + this.tiempo+ "segundos")
-   
-    this.configTimer.playTimmer(this.tiempo);
+
+    if (this.tiempo === 0) {
+      switch (this.configObcionesInicioTemporizadorSiEs0) {
+        case "error":
+          alert("No puedes iniciar un temporizador que tenga los segundos, minutos y horas a cero");
+          break;
+        case "poner1SegYEmpezar":
+          this.configTimer.playTimmer(1);
+          break;
+        case "ponerTiempoPerYEmpezar":
+          let defaultTimmer = 1;
+          this.configTimer.playTimmer(defaultTimmer);
+          break;
+        default:
+          this.configTimer.playTimmer(this.tiempo);
+          break;
+      }
+
+    }
+    else {
+      this.configTimer.playTimmer(this.tiempo);
+    }
   }
 
   reset() {
