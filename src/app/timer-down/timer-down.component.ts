@@ -38,7 +38,8 @@ export class TimerDownComponent {
   @ViewChild('seconds', { static: true }) seconds!: ElementRef;
 
   desplegar() {
-    this.timmerService.deseleccionarTimmer();
+    this.timmerService.deseleccionarTimmer(); 
+    console.log("selected:",this.configTimer.position);
     this.timmerService.selectedTimerPosition = this.configTimer.position;
     this.configTimer.classSelected = "selected";
   }
