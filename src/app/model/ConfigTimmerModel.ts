@@ -1,6 +1,7 @@
 import { IConfigTimmer } from "./Interfaces/IConfigTimmer";
+import { IConfigTimmerStored } from "./Interfaces/IConfigTimmerStored";
 
-export class ConfigTimmerModel implements IConfigTimmer {
+export class ConfigTimmerModel implements IConfigTimmer,IConfigTimmerStored{
     targetTime: any;
     interval: any;
     hour: number = 0;
@@ -9,11 +10,12 @@ export class ConfigTimmerModel implements IConfigTimmer {
     audio:any;
     classSelected:string = "d-none";
     position!:number;
-    nombre:string="Nombre temporizador (Haz click para cambiarlo)";
+    nombre!:string;
     //Constructor
-    constructor(targetTime: any = 5,position: number=0) {
+    constructor(targetTime: any = 5,position: number=0, nombre:string="Nombre temporizador (Haz click para cambiarlo)") {
         this.targetTime = targetTime - 1;
         this.position = position;
+        this.nombre = nombre;
     }
     status: string = 'stop';
 

@@ -6,5 +6,6 @@ export interface IConfigTimmer{
     hour:any,
     minutos:any,
     segundos:number,
-    status:string
+    status:string,
+    nombre:string
 }
