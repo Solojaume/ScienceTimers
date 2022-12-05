@@ -21,7 +21,7 @@ export class TimerDownComponent {
     private storageService:StorageService
   ) { }
 
-  tiempo: any;
+  tiempo: any=0;
   segundosConfigurables = true;
   ctrl = new FormControl();
   hourStep = 1;
@@ -39,8 +39,16 @@ export class TimerDownComponent {
     this.configTimer.classSelected = "selected";
   }
 
+  //Aquí se dice como ha de tratar el comienzo de un temporizador cuando se intenta empezar con 0
+  configObcionesInicioTemporizadorSiEs0 = "empezar";/*
+  Puede ser:
+   error               ---- Lo que lanzará un error
+   empezar             ---- Lo que pondra un temporizador desde 0;
+   poner1YEmpezar       ---- Pone que el tiempo objetivo es un segundo y arranca el temporizador
+   */
   play() {
-    // alert("ALERTA SISMICA SE HA ESTABLECIDO UN TEMPORIZADOR DE 5segundos")
+    //alert("ALERTA SISMICA SE HA ESTABLECIDO UN TEMPORIZADOR DE" + this.tiempo+ "segundos")
+   
     this.configTimer.playTimmer(this.tiempo);
   }
 
