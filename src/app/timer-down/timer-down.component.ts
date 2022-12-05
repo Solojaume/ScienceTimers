@@ -4,6 +4,7 @@ import { NgbModal, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ModalAutofocusComponent } from '../modal-autofocus/modal-autofocus.component';
 import { ConfigTimmerModel } from '../model/ConfigTimmerModel';
 import { ITime } from '../model/Interfaces/ITime';
+import { StorageService } from '../services/storage/storage.service';
 import { TimerService } from '../services/timer.service';
 
 @Component({
@@ -16,16 +17,10 @@ export class TimerDownComponent {
   @Output() finalizado = new EventEmitter<boolean>;
   constructor(
     private _modalService: NgbModal,
-    public timmerService: TimerService
+    public timmerService: TimerService,
+    private storageService:StorageService
   ) { }
 
-  //targetDate: any = new Date(2022, 10, 24, 17, 21);
-
-  /*
-  currentTime: any = `${
-    this.months[this.targetDate.getMonth()]
-  } ${this.targetDate.getDate()}, ${this.targetDate.getFullYear()}`;
-  */
   tiempo: any;
   segundosConfigurables = true;
   ctrl = new FormControl();
@@ -74,22 +69,22 @@ export class TimerDownComponent {
 
   open(name: string) {
     let modal = this._modalService.open(MODALS[name]);
-    console.log('let Modal', modal);
     modal.closed.subscribe((closed) => {
-      console.log('CLOSED modal:', closed);
+      //console.log('CLOSED modal:', closed);
       if (closed != null) {
-        this.configTimer.nombre = closed
+        this.configTimer.nombre = closed;
+        this.storageService.saveTemporizadores();
       }
-      //this.deleteI();
     });
 
     modal.dismissed.subscribe((dismis) => {
-      console.log('Dismis modal:', dismis);
+      //console.log('Dismis modal:', dismis);
     });
   }
 
   eliminar() {
-    this.timmerService.deleteTimmer()
+    this.timmerService.deleteTimmer();
+    this.storageService.saveTemporizadores();
   }
 
 }
