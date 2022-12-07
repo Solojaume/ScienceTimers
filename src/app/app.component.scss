@@ -1,23 +1,43 @@
 .count-down-timer {
-    box-shadow: 2px 6px 9px 2px rgb(0 0 0 / 20%);
-    text-align: center;
-    background-color: #d9a74a;
-    max-width: 300px;
-    margin: 20px auto;
-    color: #000;
-    border-radius: 6px;
-    padding: 10px;
-    font-family: sans-serif;
-    width: 300px;
-  }
+  box-shadow: 2px 6px 9px 2px rgb(0 0 0 / 20%);
+  text-align: center;
+  background-color: #d9a74a;
+  max-width: 300px;
+  margin: 20px auto;
+  color: #000;
+  border-radius: 6px;
+  padding: 10px;
+  font-family: sans-serif;
+  width: 300px;
+}
 
-  .scroll{
-    height: 88%;
+.scroll {
+  height: 80%;
+}
+
+.ad-container{
+  @extend .count-down-timer;
+  box-shadow: 2px 6px 9px 2px rgb(0 0 0 / 20%);
+  text-align: end;
+  background-color: #d9a74a;
+  max-width: 300px;
+  margin: 10px auto;
+  color: #000;
+  border-radius: 6px;
+  padding: 5px;
+  font-family: sans-serif;
+  width: 300px;
+  .adMark{
+    font-size: 12px;
+    margin-right: 5px;
+    color:#000;
   }
-  
-  @media screen and (max-width: 430px) {
-    .count-down-timer {
-      margin: 20px;
-    }
+}
+
+
+
+@media screen and (max-width: 430px) {
+  .count-down-timer {
+    margin: 20px;
   }
-  
+}
