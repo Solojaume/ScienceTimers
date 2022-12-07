@@ -107,3 +107,8 @@ $bg: #d9a74a;
   margin-left: 1.2em;
 }
 
+.nombre {
+  &:hover{
+    font-size: 18px;
+  }
+}

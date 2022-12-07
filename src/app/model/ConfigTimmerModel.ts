@@ -12,7 +12,7 @@ export class ConfigTimmerModel implements IConfigTimmer,IConfigTimmerStored{
     position!:number;
     nombre!:string;
     //Constructor
-    constructor(targetTime: any = 5,position: number=0, nombre:string="Nombre temporizador (Haz click para cambiarlo)") {
+    constructor(targetTime: any = 5,position: number=0, nombre:string="Nombre temporizador") {
         this.targetTime = targetTime - 1;
         this.position = position;
         this.nombre = nombre;

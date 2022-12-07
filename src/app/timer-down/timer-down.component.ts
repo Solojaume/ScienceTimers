@@ -119,6 +119,8 @@ export class TimerDownComponent {
   }
 
 }
+
+
 const MODALS: { [name: string]: Type<any> } = {
   autofocus: ModalAutofocusComponent,
 };

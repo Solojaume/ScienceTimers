@@ -1,5 +1,5 @@
 <div class="count-down-timer " (click)="desplegar()">
-  <p (click)="open('autofocus')">{{configTimer.nombre}} </p>
+  <p class="nombre" (click)="open('autofocus')">{{configTimer.nombre}} </p>
   <div class="wrapper">
     <div class="description1 text-center" *ngIf="configTimer.status==='stop'">
       <p>Hours</p>
