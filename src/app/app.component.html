@@ -1,12 +1,16 @@
+<p *ngFor="let alert of alerts">
+	<ngb-alert [type]="alert.type" (closed)="close(alert)">{{ alert.message }}</ngb-alert>
+</p>
 <cdk-virtual-scroll-viewport itemSize="100" class="scroll">
-    <app-timer-down *ngFor="let configTimmer of timmerService.getTimmers() " [configTimer]="configTimmer">
+    <app-timer-down *ngFor="let configTimer of timmerService.getTimmers() " [configTimer]="configTimer">
     </app-timer-down>
 </cdk-virtual-scroll-viewport>
 
 
 <div class="position-absolute bottom-0 start-50 translate-middle-x">
     <div class="count-down-timer" (click)="createTimer()">
-        Añadir otro Timmer
+        Añadir otro Temporizador
     </div>
-    <footer class="text-center">Version 0.6.0</footer>
+    <footer class="text-center">Version 0.7.1 Developement</footer>
 </div>
+
