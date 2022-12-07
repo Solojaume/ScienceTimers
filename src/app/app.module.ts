@@ -24,7 +24,6 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     NgbModule,
     ReactiveFormsModule,
     ScrollingModule 
-
     //NoopAnimationsModule, 
   ],
   exports:[
