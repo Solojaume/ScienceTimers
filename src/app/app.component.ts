@@ -3,23 +3,25 @@ import { ConfigTimmerModel } from './model/ConfigTimmerModel';
 import { StorageService } from './services/storage/storage.service';
 import { TimerService } from './services/timer.service';
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from 'src/environments/environment';
 
 interface Alert {
-	type: string,
-	message: string
+  type: string,
+  message: string
 }
 const alertControlUsuario: Alert[] = [
-	{
-		type: 'dark',
-		message: 'Se te redirigira a la pagina de login en breves segundos',
-	},
+  {
+    type: 'dark',
+    message: 'Se te redirigira a la pagina de login en breves segundos. ',
+  },
 ];
 const alertControlSave: Alert[] = [
-	{
-		type: 'success',
-		message: 'Se ha guardado correctamente los temporizadores',
-	},
+  {
+    type: 'success',
+    message: 'Se ha guardado correctamente los temporizadores',
+  },
 ];
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -30,23 +32,17 @@ export class AppComponent implements OnInit {
   constructor(
     public timmerService: TimerService,
     private storageService: StorageService,
-    private renderer2: Renderer2 
+    private renderer2: Renderer2
   ) { }
   keys: string[] = ["", ""];
   position = 0;
   alerts: Alert[] = [];
 
+
   ngOnInit(): void {
     this.renderer2.listen("document", "keydown", (event: any) => {
       const key = event.key; // "A", "1", "Enter", "ArrowRight"...
-      if(
-       key === "Control" 
-        ){
-          
-        //alert("hey pájaro que te hemos pillao");
-      }
-      
-      
+
       switch (this.position) {
         case 0:
           this.position = 1;
@@ -56,17 +52,16 @@ export class AppComponent implements OnInit {
           break;
       }
       this.keys[this.position] = key;
-  
+
       if (
         this.keys[0] === "u" && this.keys[1] === "Control"
         || this.keys[1] === "u" && this.keys[0] === "Control"
         || this.keys[0] === "U" && this.keys[1] === "Control"
-        || this.keys[1] === "U" && this.keys[0] === "Control")
-      {
+        || this.keys[1] === "U" && this.keys[0] === "Control") {
         event.preventDefault();
         event.stopPropagation();
         this.openAlert(alertControlUsuario);
-      }else if (
+      } else if (
         this.keys[0] === "s" && this.keys[1] === "Control"
         || this.keys[1] === "s" && this.keys[0] === "Control"
         || this.keys[0] === "S" && this.keys[1] === "Control"
@@ -82,20 +77,29 @@ export class AppComponent implements OnInit {
     this.renderer2.listen("document", "keyup", (event: any) => {
       event.preventDefault();
       event.stopPropagation();
-      this.keys =  ["",""];
-      this.position=0;
+      this.keys = ["", ""];
+      this.position = 0;
     });
     this.storageService.getTemporizadores();
   }
 
+  alertInterval: any;
+  suscribcionCerrarAlert() {
+    this.alertInterval = setTimeout(
+      () => {
+        this.close(this.alerts[0])
+      },environment.timeAlertInScreen
+    );
+  }
+
   close(alert: Alert) {
-		this.alerts.splice(this.alerts.indexOf(alert), 1);
-	}
+    this.alerts.splice(this.alerts.indexOf(alert), 1);
+  }
 
-  openAlert(alert:Alert[]) {
-		this.alerts = Array.from(alert);
-	}
-
+  openAlert(alert: Alert[]) {
+    this.alerts = Array.from(alert);
+    this.suscribcionCerrarAlert();
+  }
 
   createTimer() {
     this.timmerService.createTimmer();
