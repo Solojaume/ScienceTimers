@@ -1,0 +1,45 @@
+<fieldset>
+    <div class="ngb-tp">
+        <div class="ngb-tp-input-container ngb-tp-hour">
+            <button class="btn btn-link" (click)="changeHour(hourStep )">
+                <span class="chevron ngb-tp-chevron"></span>
+                <span class="visually-hidden" i18n="@@ngb.timepicker.increment-hours">Increment hours</span>
+            </button>
+            <input class="ngb-tp-input form-control"
+            [value]="model.hour"
+            [formControl]="inputH" />
+            <button class="btn btn-link" (click)="changeHour(hourStep * -1)">
+                <span class="chevron ngb-tp-chevron bottom"></span>
+                <span class="visually-hidden" i18n="@@ngb.timepicker.decrement-hours">Decrement hours</span>
+            </button>
+        </div>
+
+        <div class="ngb-tp-spacer">:</div>
+
+        <div class="ngb-tp-input-container ngb-tp-minute">
+            <button class="btn btn-link" (click)="changeMinutos(minutosStep)">
+                <span class="chevron ngb-tp-chevron"></span>
+                <span class="visually-hidden" i18n="@@ngb.timepicker.increment-hours">Increment Minutes</span>
+            </button>
+            <input class="ngb-tp-input form-control" [formControl]="inputM" [value]="model.minutos"/>
+            <button class="btn  btn-link" (click)="changeMinutos(minutosStep * -1)">
+                <span class="chevron ngb-tp-chevron bottom"></span>
+                <span class="visually-hidden" i18n="@@ngb.timepicker.decrement-hours">Decrement Minutes</span>
+            </button>
+        </div>
+
+        <div class="ngb-tp-spacer">:</div>
+
+        <div class="ngb-tp-input-container ngb-tp-second">
+            <button class="btn btn-link" (click)="changeSegundos(minutosStep)">
+                <span class="chevron ngb-tp-chevron"></span>
+                <span class="visually-hidden" i18n="@@ngb.timepicker.increment-hours">Increment hours</span>
+            </button>
+            <input class="ngb-tp-input form-control" [formControl]="inputSeg" [value]="model.segundos"/>
+            <button class="btn  btn-link" (click)="changeSegundos(segundosStep * -1)">
+                <span class="chevron ngb-tp-chevron bottom"></span>
+                <span class="visually-hidden" i18n="@@ngb.timepicker.decrement-hours">Decrement hours</span>
+            </button>
+        </div>
+    </div>
+</fieldset>

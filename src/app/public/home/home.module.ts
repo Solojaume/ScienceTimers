@@ -18,10 +18,10 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     CommonModule,
     HomeRoutingModule,
     ComponentsModule,
-   
   ],
   exports:[
-    HomeComponent
+    HomeComponent,
+    ComponentsModule
   ]
 })
 export class HomeModule { }

@@ -1,5 +1,8 @@
+<main>
+    <router-outlet></router-outlet>
+</main>
 <p *ngFor="let alert of alerts">
-	<ngb-alert [type]="alert.type" (closed)="close(alert)">{{ alert.message }}</ngb-alert>
+    <ngb-alert [type]="alert.type" (closed)="close(alert)">{{ alert.message }}</ngb-alert>
 </p>
 <cdk-virtual-scroll-viewport itemSize="100" class="scroll">
     <app-timer-down *ngFor="let configTimer of timmerService.getTimmers() " [configTimer]="configTimer">
@@ -11,6 +14,5 @@
     <div class="count-down-timer" (click)="createTimer()">
         Añadir otro Temporizador
     </div>
-    <footer class="text-center">Version 0.7.2 </footer>
+    <footer class="text-center">Version 0.8 </footer>
 </div>
-

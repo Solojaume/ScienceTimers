@@ -8,7 +8,6 @@ import { TimerDownComponent } from './timer-down/timer-down.component';
 import { TimePickerComponent } from './time-picker/time-picker.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ModalAutofocusComponent } from './modal-autofocus/modal-autofocus.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 
 @NgModule({
@@ -23,7 +22,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
-    ScrollingModule 
+    ScrollingModule,
     //NoopAnimationsModule, 
   ],
   exports:[

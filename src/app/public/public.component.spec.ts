@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TimerDownComponent } from './timer-down.component';
+import { PublicComponent } from './public.component';
 
-describe('TimerDownComponent', () => {
-  let component: TimerDownComponent;
-  let fixture: ComponentFixture<TimerDownComponent>;
+describe('PublicComponent', () => {
+  let component: PublicComponent;
+  let fixture: ComponentFixture<PublicComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TimerDownComponent ]
+      declarations: [ PublicComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TimerDownComponent);
+    fixture = TestBed.createComponent(PublicComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
